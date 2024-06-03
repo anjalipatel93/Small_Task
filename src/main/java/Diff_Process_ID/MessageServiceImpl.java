@@ -1,5 +1,7 @@
 package Diff_Process_ID;
 
+import java.lang.management.ManagementFactory;
+import java.lang.management.RuntimeMXBean;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -45,7 +47,7 @@ public class MessageServiceImpl extends UnicastRemoteObject implements MessageSe
      * @param message The input string.
      * @return The incremented integer.
      */
-    private int getNextNumber(String message) {
+    public int getNextNumber(String message) {
         // Split the message by space and get the last number
         String[] parts = message.split(" ");
         int lastNumber = Integer.parseInt(parts[parts.length - 1]);
@@ -53,4 +55,12 @@ public class MessageServiceImpl extends UnicastRemoteObject implements MessageSe
         // Increment the number
         return lastNumber + 1;
     }
+    
+    public String getProcessId() 
+    {
+    	RuntimeMXBean runtime = ManagementFactory.getRuntimeMXBean();
+    	String name = runtime.getName();
+    	return name.split("@")[0]; // PID is before the '@' symbol
+    }
+
 }

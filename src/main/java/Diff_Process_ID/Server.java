@@ -4,6 +4,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+
 /*
  * This class implements the MessageService interface and serves as the RMI server.
  * It receives messages from clients and appends a counter to each message before sending it back.
@@ -34,7 +35,10 @@ public class Server implements MessageService {
     }
     public static void main(String[] args) {
         try {
+        	
+        	
             Server obj = new Server();
+            System.out.println("Server Process ID: " + Util.getProcessId());
             MessageService stub = (MessageService) UnicastRemoteObject.exportObject(obj, 0);
 
             Registry registry = LocateRegistry.createRegistry(1099);

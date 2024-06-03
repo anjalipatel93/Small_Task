@@ -8,6 +8,9 @@ public class Client {
     public static void main(String[] args) {
         try {
         	
+        	System.out.println("Client Process ID: " + Util.getProcessId());
+
+        	
         	// Connect to the RMI registry running on localhost at port 1099
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
             
